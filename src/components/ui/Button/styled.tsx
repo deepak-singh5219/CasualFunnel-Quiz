@@ -7,8 +7,8 @@ interface ButtonType {
 export const ButtonStyle = styled.button.attrs(({ outline }: ButtonType) => ({
   outline,
 }))`
-  width: 195px;
-  min-height: 50px;
+  width: 140px;
+  min-height: 35px;
   color: ${({ theme, outline }) =>
     outline ? theme.colors.themeColor : theme.colors.white};
   background: ${({ theme, outline }) =>

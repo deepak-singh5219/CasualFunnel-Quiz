@@ -27,13 +27,16 @@ export type QuizContextTypes = {
   setCurrentScreen: Dispatch<SetStateAction<ScreenTypes>>
   questions: any[]
   attemptedQuestions: Number[]
+  markedForReview: Number[]
   setAttemptedQuestions: Dispatch<SetStateAction<any>>
   setQuestions: Dispatch<SetStateAction<any[]>>
   result: Result[]
   setResult: Dispatch<SetStateAction<any[]>>
   timer: number
+  isChecked: boolean
   setTimer: Dispatch<SetStateAction<number>>
   handleQuestionClick: Dispatch<SetStateAction<any>>
+  handleMarkForReview: Dispatch<SetStateAction<any>>
   endTime: number
   activeQuestion:number
   setActiveQuestion: Dispatch<SetStateAction<any>>

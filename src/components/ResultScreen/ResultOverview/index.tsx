@@ -25,9 +25,9 @@ interface ResultOverviewProps {
 }
 
 const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
-  const { quizDetails, endTime } = useQuiz()
+  const { quizDetails, endTime, attemptedQuestions } = useQuiz()
 
-  const totalQuestionAttempted = result.length
+  const totalQuestionAttempted = attemptedQuestions.length;
 
   const obtainedScore = result
     .filter((item) => item.isMatch && typeof item.score === 'number')

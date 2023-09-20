@@ -70,13 +70,25 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
         const correctAnswers = [correct_answer];
         return { question, type, choices, correctAnswers, score:5}
       })
-      console.log(quesArray);
+      const rst =  quesArray.map((currQues:any) => {
+        return {
+          marked:false,
+          ...currQues,
+          selectedAnswer:[],
+          isMatch:false,
+        }
+      });
+      setResult(rst);
       setQuestions(quesArray);
     } catch (error) {
       console.error('Error fetching questions:', error);
     }
   };
 
+  console.log(result)
+
+  
+ 
 
 
     const handleQuestionClick = (index:number) => {

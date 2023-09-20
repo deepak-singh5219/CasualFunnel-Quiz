@@ -88,11 +88,12 @@ const QuestionScreen: FC = () => {
     setAttemptedQuestions
   } = useQuiz()
 
-  const currentQuestion = questions[activeQuestion]
-  console.log(currentQuestion);
+  const currentQuestion = questions[activeQuestion];
   
 
   const { question, type, choices, correctAnswers } = currentQuestion
+
+  
  
 
   const onClickNext = () => {
@@ -102,13 +103,17 @@ const QuestionScreen: FC = () => {
 
       
 
-    // adding selected answer, and if answer matches key to result array with current question
-    setResult([...result, { ...currentQuestion, selectedAnswer, isMatch }])
-
-    if (activeQuestion !== questions.length - 1) {
-      setActiveQuestion((prev:number) => prev + 1)
+    const idx = result.findIndex(resultObj => resultObj.question === currentQuestion.question);
+    if(selectedAnswer.length>0){
+      result[idx] = { ...currentQuestion, selectedAnswer, isMatch ,marked:true };
+    }
+    if(!attemptedQuestions.includes(activeQuestion)){
       setAttemptedQuestions([...attemptedQuestions,activeQuestion])
+    }
 
+
+    if (activeQuestion !== questions.length-1) {
+      setActiveQuestion((prev:number) => prev + 1)
     } else {
       // how long does it take to finish the quiz
       const timeTaken = quizDetails.totalTime - timer
@@ -174,7 +179,7 @@ const QuestionScreen: FC = () => {
       {(showTimerModal || showResultModal) && (
         <ModalWrapper
         title={showResultModal ? 'Done!' : 'Your time is up!'}
-        subtitle={`You have attempted ${result.length} questions in total.`}
+        subtitle={`You have attempted ${attemptedQuestions.length} questions in total.`}
         onClick={handleModal}
         icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
         buttonTitle="SHOW RESULT"

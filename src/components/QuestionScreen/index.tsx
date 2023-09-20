@@ -55,14 +55,14 @@ const LogoContainer = styled.div`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  right: 60px;
+  left: 55px;
   bottom: 30px;
   display: flex;
   gap: 20px;
   @media ${device.sm} {
     justify-content: flex-end;
-    width: 90%;
-    right: 15px;
+    width: 60%;
+    left: 0
   }
 `
 
@@ -85,7 +85,10 @@ const QuestionScreen: FC = () => {
     activeQuestion,
     setActiveQuestion,
     attemptedQuestions,
-    setAttemptedQuestions
+    setAttemptedQuestions,
+    handleMarkForReview,
+    markedForReview,
+    isChecked
   } = useQuiz()
 
   const currentQuestion = questions[activeQuestion];
@@ -133,6 +136,8 @@ const QuestionScreen: FC = () => {
     }
   }
 
+  const textVal = markedForReview.includes(activeQuestion)?"Unmark":"Mark";
+
 
   const handleModal = () => {
     setCurrentScreen(ScreenTypes.ResultScreen)
@@ -165,18 +170,19 @@ const QuestionScreen: FC = () => {
           handleAnswerSelection={handleAnswerSelection}
           selectedAnswer={selectedAnswer}
         />
-        <ButtonWrapper>
-          <Button
+       
+        
+        <div className="flex items-center gap-4 mb-4">
+        <Button
             text={activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
             onClick={onClickNext}
             icon={<Next />}
-            iconPosition="right"
+            iconPosition="left"
             disabled={selectedAnswer.length === 0}
           />
-        </ButtonWrapper>
-        <div className="flex items-center mb-4">
-          <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-          <label  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+        <button onClick={() => handleMarkForReview(activeQuestion)} className={`${markedForReview.includes(activeQuestion)?"bg-gray-400 hover:bg-gray-600":"bg-blue-500 hover:bg-blue-700"}  text-white font-bold py-2 px-6 rounded`}>
+         {textVal}
+       </button>
        </div>
       </QuizContainer>
       {/* timer or finish quiz modal*/}
@@ -195,4 +201,4 @@ const QuestionScreen: FC = () => {
   )
 }
 
-export default QuestionScreen
+export default QuestionScreen;

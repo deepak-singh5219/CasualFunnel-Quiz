@@ -8,7 +8,7 @@ import Answer from '../Answer'
 const QuestionContainer = styled.div`
   margin-top: 30px;
   margin-bottom: 40px;
-  max-width: 88%;
+  max-width: 70%;
   @media ${device.sm} {
     max-width: 100%;
   }
@@ -22,11 +22,11 @@ const AnswersContainer = styled.div`
 `
 
 const QuestionStyle = styled.h2`
-  font-size: clamp(18px, 4vw, 28px);
+  font-size: clamp(16px, 3vw, 26px);
   font-weight: 500;
   margin-bottom: 25px;
   color: ${({ theme }) => theme.colors.primaryText};
-  line-height: 1.3;
+  line-height: 1.4;
 `
 
 interface QuestionTypes {

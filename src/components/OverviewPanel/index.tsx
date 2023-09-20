@@ -20,17 +20,18 @@ const {
     activeQuestion,
     attemptedQuestions,
     handleQuestionClick,
+    markedForReview,
 
 } = useQuiz();
 
 // const questions = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-const currentQuestion = 8;
+// const currentQuestion = 8;
 // const attemptedQuestions = [1,2,5,6,7,8];
-const markedForReview = [3,4,8];
+// const markedForReview = [3,4,8];
 
 
   return (
-    <div className="relative bg-white h-full p-4">
+    <div className="relative hidden md:block bg-white h-full p-4">
       <h2 className="text-lg font-semibold mb-2">Question Overview</h2>
       <div className="grid grid-cols-5 gap-2">
         {questions.map((question, index:number) => (

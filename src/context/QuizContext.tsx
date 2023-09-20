@@ -2,12 +2,15 @@ import { ReactNode, createContext, useContext, useEffect, useState } from 'react
 import { QuizContextTypes, Result, ScreenTypes } from '../types'
 import axios from "axios";
 
+
+
 const initialState: QuizContextTypes = {
   currentScreen: ScreenTypes.SplashScreen,
   setCurrentScreen: () => {},
   questions: [],
   setQuestions: () => {},
   attemptedQuestions: [],
+  markedForReview: [],
   setAttemptedQuestions: () => {},
   result: [],
   setResult: () => {},
@@ -16,7 +19,9 @@ const initialState: QuizContextTypes = {
   endTime: 0,
   setEndTime: () => {}, 
   handleQuestionClick: () => {},
+  handleMarkForReview: () => {},
   activeQuestion:0,
+  isChecked: false,
   setActiveQuestion: () => {},
   quizDetails: {
     totalQuestions: 0,
@@ -47,6 +52,8 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
 
   const [questions, setQuestions] = useState<any[]>([])
   const [attemptedQuestions, setAttemptedQuestions] = useState<number[]>([])
+  const [markedForReview, setMarkedForReview] = useState<number[]>([])
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   function shuffleArray(array:string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -85,13 +92,23 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
     }
   };
 
-
-
-  
  
+     
+  const handleMarkForReview = (activeQuestion:number) => {
+       setIsChecked(!isChecked); 
+        if(!markedForReview.includes(activeQuestion)){
+          setMarkedForReview([...markedForReview,activeQuestion]);
+        }
+        else{
+          const filterArray = markedForReview.filter((ele:number)=> ele!==activeQuestion);
+          setMarkedForReview(filterArray);
+        }
+  }
 
 
     const handleQuestionClick = (index:number) => {
+
+      console.log("clicked");
         setActiveQuestion(index);
   };
 
@@ -136,7 +153,10 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
     activeQuestion,
     setActiveQuestion,
     attemptedQuestions,
-    setAttemptedQuestions
+    markedForReview,
+    setAttemptedQuestions,
+    handleMarkForReview,
+    isChecked
   }
 
   return <QuizContext.Provider value={quizContextValue}>{children}</QuizContext.Provider>

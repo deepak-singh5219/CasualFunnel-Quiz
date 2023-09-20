@@ -1,8 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+
 import styled, { css } from 'styled-components'
 import { device } from '../../../styles/BreakPoints'
+import { useQuiz } from '../../../context/QuizContext'
 
-const AnswerStyle = styled.div<{ highlightAnswer: boolean }>`
+
+const AnswerStyle = styled.div<{ highlightAnswer: boolean, markedAns: boolean }>`
   font-size: clamp(18px, 4vw, 16px);
   color: ${({ theme }) => theme.colors.secondaryText};
   font-weight: 400;
@@ -26,6 +29,26 @@ const AnswerStyle = styled.div<{ highlightAnswer: boolean }>`
     visibility: hidden;
     margin: 0;
   }
+
+  ${({ markedAns, theme }) =>
+  markedAns ? `${theme.colors.themeColor}` : `${theme.colors.lightGray}`};
+background-color: ${({ markedAns, theme }) =>
+markedAns ? `${theme.colors.disabledButton}` : `${theme.colors.white}`};
+border-radius: 16px;
+margin-top: clamp(13px, calc(10px + 6 * ((100vw - 600px) / 1320)), 16px);
+cursor: pointer;
+${({ markedAns }) =>
+markedAns &&
+css`
+  transition: border 0.2s ease-in;
+`}
+@media ${device.md} {
+font-weight: 500;
+}
+input {
+visibility: hidden;
+margin: 0;
+}
 `
 
 const AnswerLabel = styled.label`
@@ -44,15 +67,20 @@ interface AnswerProps {
   choice: string
   type: string
   selectedAnswer: string[]
+  question: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Answer: FC<AnswerProps> = ({ onChange, index, choice, type, selectedAnswer }) => {
+const Answer: FC<AnswerProps> = ({ onChange, index, choice, type, selectedAnswer, question}) => {
   // Convert index to alphabet character to show ABCD before question
   const label = String.fromCharCode(65 + index)
-
+  const {result} = useQuiz();
+  const idx = result.findIndex(resultObj => resultObj.question===question)
+  const currentAns = result[idx];
+  
+ 
   return (
-    <AnswerStyle key={index} highlightAnswer={selectedAnswer.includes(choice)}>
+    <AnswerStyle key={index} markedAns={currentAns.selectedAnswer.includes(choice)} highlightAnswer={selectedAnswer.includes(choice)}>
       <AnswerLabel>
         <ChoiceLabel>{label}.</ChoiceLabel>
         <input
@@ -61,8 +89,10 @@ const Answer: FC<AnswerProps> = ({ onChange, index, choice, type, selectedAnswer
           type={type === 'MAQs' ? 'checkbox' : 'radio'}
           checked={selectedAnswer.includes(choice)}
           onChange={onChange}
+          
         />
         {choice}
+        
       </AnswerLabel>
     </AnswerStyle>
   )

@@ -85,7 +85,7 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
     }
   };
 
-  console.log(result)
+
 
   
  

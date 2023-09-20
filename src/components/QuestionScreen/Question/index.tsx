@@ -56,6 +56,7 @@ const Question: FC<QuestionTypes> = ({
             onChange={(e) => handleAnswerSelection(e, index)}
             type={type}
             selectedAnswer={selectedAnswer}
+            question={question}
           />
         ))}
       </AnswersContainer>

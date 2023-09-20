@@ -1,239 +1,75 @@
-![React Quiz App Template Cover Image](./src/assets/images/Xeven-Quiz-ReactJS-Quiz-App-Template.jpg)
-# Xeven Quiz - ReactJS Quiz App Template
+# Quiz Application
 
-With **Xeven Quiz**, you don't have to spend hours coding from scratch. Our template provides a solid foundation, eliminating the need to reinvent the wheel. You'll spend less time developing your app, which lets you focus on the unique. Xeven Quiz helps you follow industry best practices and coding conventions as a beginner.
+This is a simple quiz application built using React.js and TypeScript, utilizing the Context API. The application fetches quiz questions from the [Open Trivia Database API](https://opentdb.com/api.php?amount=15) and allows users to answer them. Below, you'll find information about the application's requirements, functionality, and features.
 
-As a beginner developer, a quiz app is a common project. But without guidance, this simple project can become difficult. Xeven Quiz is here to change that narrative and give you the tools and knowledge you need to create a successful and efficient quiz app.
+## Objective
 
-With a strong architecture and modular design, you can easily add new features, expand your question database, and accommodate a growing user base without experiencing any setbacks.
+Thank you for considering me for the FullStack Developer Intern position at CausalFunnel. As part of the evaluation process, I have completed the task assigned to me.
 
-### Powerful Tech Stack
+## Features
 
-- Reactjs
-- Typescript
-- Styled components
+### Quiz Layout & Flow
 
-With **ReactJS** at its core, it lets you design dynamic interfaces that automatically update and respond to user interactions.
+- The application starts with a welcome page where the user is prompted to submit their email address.
 
-**TypeScript** brings enhanced development productivity through static typing and intelligent tooling. 
+- After submitting the email address, the user is presented with 15 quiz questions.
 
-**Styled Components** ensure fast and intuitive styling, allowing you to create stunning interfaces effortlessly.
+- A timer is displayed at the top of the page, counting down from 30 minutes. The quiz auto-submits when the timer reaches zero.
 
-## React Quiz App's Theme Features
+### Navigation
 
-Before I explain the technical aspects of the quiz app, let me share the wonderful features of the quiz app that is available in demo GitHub version. You can get all these features in a template and mold them according to your choice.
+- Users can navigate to a specific question within the quiz.
 
-- Each time the quiz starts, questions will be shuffled or randomized.
-- There will be a timer running when the quiz starts. If the timer finishes, the quiz will be stopped, and the user will be asked to see the result.
-- Each question has a score. For example, a difficult question has 10 marks, and an easier one has 5.
-- The template also supports three types of questions, MCQs, True/False, and MAQs.
-- The result screen shows how many questions the user attempted, how much he scored, how long it took, and whether he passed or failed.
-- In result screen user can see which question had the right answer and which was wrong. The user can find the correct answer in case of a wrong answer.
+- An overview panel or a similar element shows all questions, indicating:
+  - Questions the user has visited.
+  - Questions that have been attempted.
 
-## React Quiz App's Code Features
+### End of Quiz
 
-- **TypeScript powered Components:** All components are TypeScript-built for enhanced development productivity with intelligent code completion and compile-time error checking.
-- **Easy Theme Customization:** The template provides easy theme management with IntelliSense support via Styled Components and Typescript. It allows you to customize the app's appearance without relying on hard-coded colors.
-- **Flexible Question Data Structure:** The template uses Javascript/TypeScript files to define quiz questions. This format provides a structured and flexible approach. The same format can also be used to fetch questions from an API if desired.
-- **Modular and Context Pattern:** The template follows a javascript modular and React Context pattern, promoting component reusability and maintainability.
-- **Custom Hooks for Logic Sharing:** The hook pattern lets you share logic across components. It also promotes code reuse and minimizes code clutter.
-- **Built with React Best Practices:** App follows industry-leading React practices. Our template ensures optimal structure, scalability, and maintainability.
+- After completing the quiz or when the timer runs out, users are directed to a report page.
 
-## Xeven Quiz - ReactJS Quiz App Template Code Documentations
+- The report page displays each question with the user's answer and the correct answer side by side or in an easily comparable format.
 
-This guide will walk you through the steps to start using and customizing the app according to your needs. The Xeven Quiz is designed to help you create interactive quizzes with various question types, including Multiple Choice Questions (MCQs), Multiple Answer Questions (MAQs), and True/False questions.
+### Data Source
 
-## Demo App
+- Quiz questions are fetched from the [Open Trivia Database API](https://opentdb.com/api.php?amount=15).
 
-To experience the Demo App, visit the link: https://xeven-quiz.vercel.app/
+- The question displayed to the user is obtained from the `question` parameter of the API response.
 
-## **How to Start a Project**
+- Choices presented to the user for each question are generated from a concatenated array of `correct_answer` and `incorrect_answers` parameters.
 
-To start the project, follow these steps:
+- The correct answer for each question is provided in the `correct_answer` parameter.
 
-1. Clone the repo and navigate to the project directory via terminal.
-2. Run the command **`npm install`** to download and install all the project dependencies.
-3. Once the dependencies are installed, run the command **`npm start`** to start the development server.
+## Challenges Faced
 
-### Folder Structure Explanation
+Building the Overview Panel and Navigation:
+- One of the challenges faced during development was implementing the overview panel with question navigation. This required careful management of state and routing to ensure that users could easily move between questions.
 
-Understanding the folder structure is essential for working with the app. Here's an overview of the main folders:
+Building the Result Panel:
+- Another challenge was creating the result panel to display each question, the user's answer, and the correct answer side by side. Formatting and presenting this information in a clear and readable manner required thoughtful design and layout decisions.
 
-![quiz-app-folder-structure.png](./src/assets/images/quiz-app-folder-structure.png)
+## Getting Started
 
-- **assets**: Contains all the app's assets, such as fonts, icons, and images
-- **components**: Contains all the components of app
-- **components/UI**: Contains reusable UI components of app
-- **context**: Includes a context for sharing logic across the app
-- **styles**: Contains styles and their configurations using Styled Components
-- **hooks**: Includes reusable hooks used in the app
-- **utils**: Contains Javascript helper functions
-- **data**: Contains quiz questions and quiz topic screens data
-- **types**: Contains TypeScript types used throughout the app
-- **config**: Imports all the icons, providing centralized access
+To run this application locally, follow these steps:
 
-### Components Architecture
+1. Clone this repository to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Run `npm install` to install the project dependencies.
+4. Run `npm start` to start the development server.
+5. Open your web browser and visit `http://localhost:3000` to access the application.
 
-The **Xeven Quiz App** consists of 4 main screens/components that are displayed conditionally (in light version):
+## Technologies Used
 
-1. Splash Screen
-2. Quiz Details Screen
-3. Questions Screen
-4. Result Screen
+- React.js
+- TypeScript
+- Context API
+- Tailwind CSS (for styling)
+- Axios (for API requests)
 
-The screens are organized in the **`components`** folder since the app does not utilize routing. If a component is reusable and can be used in multiple places within the app (e.g., Button, ModalWrapper, and CodeSnippet), it is placed in the **`components/UI`** folder. On the other hand, if a component is screen-specific and separated just to make other components smaller and more manageable, it is placed in the relevant components folder. For example, the components `QuizHeader`, `Question`, and `Answer` are inside the **`QuestionScreen`** folder.
+## Acknowledgments
 
-## How to customize the quiz layout and styling
+Special thanks to the Open Trivia Database for providing the quiz questions for this application.
 
-### **Changing the App Theme**
+## License
 
-To change the theme of the app, follow these steps:
-
-1. Open the **`styles/Themes`** file.
-2. Modify the colors in the themes to customize the app's appearance.
-
-### Changing the App Font
-
-To change the font of the app, follow these steps:
-
-1. Go to **`assets`** ⇒ **`fonts`**.
-2. Replace the current fonts (e.g., "anek-malayalam") with the fonts you want to use.
-3. Go to **`fonts.module.css`** file ****and replace the font name and path with new font you added.
-4. Go to the **`theme`** file and change the font name.
-5. Go to the global styles and update the font in the **`body`** section.
-
-### **Modifying the Quiz Topic Screen or Adding New Categories**
-
-To modify the Quiz Topics Screen or add new categories of topics/icons, follow these steps:
-
-1. Open the **`data/quizTopics`** file.
-2. Make changes to the titles, icons or add new topics (by adding new object in `quizTopics`) as needed.
-3. Ensure that the title in the **`QuizTopic`** data match the topic of **`data/QuizQuestions`** folder.
-
-For example
-
-```jsx
-export const quizTopics: QuizTopic[] = [
-  {
-    title: 'React', // match topic value with this line
-    icon: <ReactIcon />,
-  },
-  {
-    title: 'JavaScript', // match topic value with this line
-    icon: <JavaScript />,
-  },
-  ....
-]
-
-export const javascript: Topic = {
-  topic: 'Javascript', // match value with topic key
-  level: 'Beginner',
-  totalQuestions: 14,
-  .....
-}
-```
-
-### Adding a New Screen
-
-This app is designed with scalability in mind, allowing you to easily add new screens. Here's how you can add a new screen, such as a "Quiz Types" screen (where you can select quiz type for example individual question timer, with or without timer):
-
-**Step 1: Create a component**
-
-Create a new component called **`QuizType`** in the **`components`** folder.
-
-**Step 2: Update the Main component**
-
-Go to the main components file (**`Main/index.ts`**) and render the **`QuizType`** screen in the **`screenComponents`** section/object. Don't forget to add the screen name in the typescript **`screenTypes`** as well.
-
-```jsx
-const screenComponents = {
-  [ScreenTypes.SplashScreen]: <SplashScreen />,
-  [ScreenTypes.QuizTopicsScreen]: <QuizTopicsScreen />,
-  [ScreenTypes.QuizTypesScreen]: <QuizTypesScreen />, // new screen  
-  [ScreenTypes.QuizDetailsScreen]: <QuizDetailsScreen />,
-  [ScreenTypes.QuestionScreen]: <QuestionScreen />,
-  [ScreenTypes.ResultScreen]: <ResultScreen />,
-}
-```
-
-If you have multiple conditions to show the screen, you can change the object to a switch or if-else statement. Here's an example using a switch statement:
-
-```jsx
-import { useEffect } from 'react'
-
-import { useQuiz } from '../../context/QuizContext'
-import { ScreenTypes } from '../../types'
-
-import QuestionScreen from '../QuestionScreen'
-import QuizDetailsScreen from '../QuizDetailsScreen'
-import QuizTopicsScreen from '../QuizTopicsScreen'
-import ResultScreen from '../ResultScreen'
-import SplashScreen from '../SplashScreen'
-
-function Main() {
-  const { currentScreen, setCurrentScreen } = useQuiz()
-
-  useEffect(() => {
-    setTimeout(() => {
-      setCurrentScreen(ScreenTypes.QuizTopicsScreen)
-    }, 1000)
-  }, [])
-
-  switch (currentScreen) {
-    case ScreenTypes.SplashScreen:
-      return <SplashScreen />
-    case ScreenTypes.QuizTopicsScreen:
-      return <QuizTopicsScreen />
-    case ScreenTypes.QuizDetailsScreen:
-      return <QuizDetailsScreen />
-    case ScreenTypes.QuestionScreen:
-      return <QuestionScreen />
-    case ScreenTypes.ResultScreen:
-      return <ResultScreen />
-    default:
-      return <SplashScreen />
-  }
-}
-
-export default Main
-```
-
-### Implementing Different Types of Quiz Questions
-
-The Code Quiz App supports various types of quiz questions, including Multiple Choice Questions (MCQs), Multiple Answer Questions (MAQs), and True/False questions. To add different question types, you can modify the question components and their associated data structures. You can refer to the existing question formats in the **`data/QuizQuestions`** folder as examples when creating new questions.
-
-For example, if you want to create a Multiple Choice Question (MCQ), you need to set its **`type`** to **`MCQs`** in the question data. Similarly, for a Multiple Answer Question (MAQ), set the **`type`** to **`MAQs`**, and for a True/False question, set it to the appropriate type as well.
-
-**Remember:** For MAQs, users can select multiple answer options, while for MCQs and True/False questions, users can select only one option. Make sure to set the correct **`type`** to match the question's behavior accordingly.
-
-### Important Note
-
-Before making the Code Quiz App your own, remember to customize the meta and title tags in the **`index.html`** file, as well as the logo, preview image, and favicon image in the **`public`** folder. This ensures that the app reflects your branding and identity.
-
-## Upgrade to PRO version
-
-Discover the Premium Version! Elevate your experience with the same amazing features you have seen in [demo](https://xeven-quiz.vercel.app/) app. 
-
-[Check it out now!](https://basit313.gumroad.com/l/react-quiz-app-template)
-
-### Premium Version Highlights
-
-- Elevate user experience by seamlessly toggling between light and dark modes with a single click from the top menu.
-- The user can pick a quiz topic on the first screen, like JavaScript, React, or Python.
-- Users can skip a question if they are unsure of the answer. They can return to it later and answer it before submitting the quiz.
-- The PRO version also allows for adding code snippets in questions. You can easily assess the users' programming knowledge and skills.
-
-## **Deploying the Quiz App to a Production Environment**
-
-To share your quiz app with the world, you need to deploy it on a server that supports single-page applications or the React ecosystem. Here are some popular options for deploying your app:
-
-1. Digital Ocean
-2. Vercel
-3. Netlify
-4. AWS Amplify
-
-Choose the one that best suits your needs and follow their deployment instructions to make your app accessible to users.
-
-### Contact Me
-
-I hope this documentation helps you get started with the Xeven Quiz App. If you have any questions or feedback, please feel free to reach out to me at **[abdul_basit313@outlook.com](mailto:abdul_basit313@outlook.com)**. Happy quizzing!
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

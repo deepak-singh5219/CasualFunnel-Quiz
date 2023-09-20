@@ -70,6 +70,10 @@ To run this application locally, follow these steps:
 
 Special thanks to the Open Trivia Database for providing the quiz questions for this application.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+## Screenshots
+![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+![Alt text](image-3.png)
+![Alt text](image-4.png)
+![Alt text](screencapture-localhost-3000-main-2023-09-21-01_10_09.png)

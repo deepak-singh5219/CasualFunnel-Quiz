@@ -70,6 +70,12 @@ To run this application locally, follow these steps:
 
 Special thanks to the Open Trivia Database for providing the quiz questions for this application.
 
+## Demo Video
+
+https://github.com/deepak-singh5219/CasualFunnel-Quiz/assets/84671689/f78699a6-df2a-4549-a60c-63d1baf898a7
+
+
+
 ## Screenshots
 ![Alt text](image.png)
 ![Alt text](image-1.png)
